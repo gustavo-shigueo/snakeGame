@@ -21,7 +21,8 @@ function draw() {
   
   food.show()
   
-  snake.eat(food)
+  if(snake.eat(food)) increaseScore()
+
   if(snake.death()) {
     noLoop()
     gameOver()

@@ -2,6 +2,13 @@
 const scoreCounter = document.querySelector('#score')
 const highScoreCounter = document.querySelector('#highscore')
 
+function increaseScore() {
+    score++
+    food = new Food    
+    showScore()
+    snake.increaseTail()
+}
+
 function showScore() {
     scoreCounter.innerText = `Score: ${score}`
     highScoreCounter.innerText = `Highscore: ${highscore}`

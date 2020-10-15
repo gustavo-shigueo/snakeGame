@@ -1,6 +1,6 @@
 class Food{
   constructor(){
-    this.x = floor(random(0, w) / grid)  * grid
+    this.x = floor(random(0, w) / grid) * grid
     this.y = floor(random(0, h) / grid) * grid
   }
   

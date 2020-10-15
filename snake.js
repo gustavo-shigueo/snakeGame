@@ -11,6 +11,14 @@ class Snake{
       [this.x, this.y],
       [this.x, this.y]
     ]
+
+    // Orientate arrow keys and direction changes
+    this.directions = {
+      'ArrowUp':    [ 0, -1],
+      'ArrowLeft':  [-1,  0],
+      'ArrowDown':  [ 0,  1],
+      'ArrowRight': [ 1,  0]
+    }
   }
   
   update(){
@@ -23,7 +31,12 @@ class Snake{
     this.y += this.dir[1] * grid
   }
 
-  changeDirection(xD, yD) {
+  changeDirection(key) {
+    // Set direction acording to this.directions object
+    if (!this.directions[key]) return
+    const xD = this.directions[key][0]
+    const yD = this.directions[key][1]
+
     // Prevents death by changing directions very quickly
     if (this.tail[0][0] === this.x + xD * grid && this.tail[0][1] === this.y + yD * grid) return
     
@@ -60,6 +73,7 @@ class Snake{
     for(const piece of this.tail) {
       if(this.x === piece[0] && this.y === piece[1]) return true
     }
+    
     return
   }
 }

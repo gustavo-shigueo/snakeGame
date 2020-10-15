@@ -29,20 +29,5 @@ function draw() {
 }
 
 function keyPressed(){
-  if(keyCode === UP_ARROW) {
-    snake.changeDirection(0, -1)
-    return
-  }
-  if(keyCode === LEFT_ARROW) {
-    snake.changeDirection(-1, 0)
-    return
-  }
-  if(keyCode === DOWN_ARROW) {
-    snake.changeDirection(0, 1)
-    return
-  }
-  if(keyCode === RIGHT_ARROW) {
-    snake.changeDirection(1, 0)
-    return
-  }
+  snake.changeDirection(key)
 }

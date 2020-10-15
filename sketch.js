@@ -1,7 +1,7 @@
-w = 500
-h = 500
+w = detectMobile() ? 750 : 500
+h = detectMobile() ? 750 : 500
 
-const grid    = 10
+const grid    = detectMobile() ? 15 : 10
 let score     = 0
 let highscore = 0
 

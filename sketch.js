@@ -1,17 +1,16 @@
 w = 500
 h = 500
 
-const grid = 10
+const grid    = 10
+let score     = 0
 let highscore = 0
-
-const gameOverScreen = document.querySelector('.gameover-screen')
-const restartBtn = document.querySelector('.gameover-btn')
 
 function setup() {
   frameRate(10)
   snake = new Snake()
   food  = new Food()
   createCanvas(w, h);
+  showScore()
 }
 
 function draw() {
@@ -25,20 +24,25 @@ function draw() {
   snake.eat(food)
   if(snake.death()) {
     noLoop()
-    gameOverScreen.setAttribute('data-gameover-screen', 'show')
-    highscore = max(highscore, snake.score)
+    gameOver()
   }
 }
 
 function keyPressed(){
-  if(keyCode === UP_ARROW    && snake.dir[1] != 1 ) snake.dir = [0, -1]
-  if(keyCode === LEFT_ARROW  && snake.dir[0] != 1 ) snake.dir = [-1, 0]
-  if(keyCode === DOWN_ARROW  && snake.dir[1] != -1) snake.dir = [0, 1]
-  if(keyCode === RIGHT_ARROW && snake.dir[0] != -1) snake.dir = [1, 0]
+  if(keyCode === UP_ARROW) {
+    snake.changeDirection(0, -1)
+    return
+  }
+  if(keyCode === LEFT_ARROW) {
+    snake.changeDirection(-1, 0)
+    return
+  }
+  if(keyCode === DOWN_ARROW) {
+    snake.changeDirection(0, 1)
+    return
+  }
+  if(keyCode === RIGHT_ARROW) {
+    snake.changeDirection(1, 0)
+    return
+  }
 }
-
-restartBtn.addEventListener('click', () => {
-  gameOverScreen.setAttribute('data-gameover-screen', 'hide')
-  loop()
-  snake = new Snake()
-})

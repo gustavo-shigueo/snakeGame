@@ -3,8 +3,6 @@ class Snake{
     this.x = 10 * grid
     this.y = 10 * grid
     
-    this.score = 0
-    
     this.dir = [1, 0]
     
     this.tail = [
@@ -19,27 +17,33 @@ class Snake{
     this.x += this.dir[0] * grid
     this.y += this.dir[1] * grid
   }
+
+  changeDirection(xD, yD) {
+    if (this.tail[0][0] === this.x + xD * grid && this.tail[0][1] === this.y + yD * grid) return
+    if ((xD === 0 && this.dir[1] === 0) || (yD === 0 && this.dir[0] === 0)) {
+      return this.dir = [xD, yD]
+    }
+  }
   
   show(){
     fill(255)
-    document.getElementById('highscore').innerText = `Highscore: ${highscore}`
-    document.getElementById('score').innerText = `Score: ${this.score}`
     rect(this.x, this.y, grid)
-    for(let piece of this.tail) rect(piece[0], piece[1], grid)
+    for(const piece of this.tail) rect(piece[0], piece[1], grid)
   }
   
   eat(fObj){
     if(dist(this.x, this.y, fObj.x, fObj.y) < grid) {
       food = new Food()
-      this.score++
+      score++
+      showScore()
       this.tail.push([this.tail[this.tail.length - 1]])
     }
   }
   
   death(){
-    if(this.x <= -grid || this.y <= -grid || this.x > w || this.y > h) return true
-    for(let p of this.tail) {
-      if(this.x === p[0] && this.y === p[1]) return true
+    if(this.x <= -grid || this.y <= -grid || this.x >= w || this.y >= h) return true
+    for(const piece of this.tail) {
+      if(this.x === piece[0] && this.y === piece[1]) return true
     }
     return
   }

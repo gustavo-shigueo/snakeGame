@@ -5,6 +5,7 @@ class Food{
   }
   
   show(){
+    // Draws food piece
     fill(255, 40, 40)
     rect(this.x, this.y, grid)
   }

@@ -37,7 +37,7 @@ class Snake{
   }
   
   death(){
-    if(this.x <= -grid || this.y <= -grid || this.x === w || this.y === h) return true
+    if(this.x <= -grid || this.y <= -grid || this.x > w || this.y > h) return true
     for(let p of this.tail) {
       if(this.x === p[0] && this.y === p[1]) return true
     }

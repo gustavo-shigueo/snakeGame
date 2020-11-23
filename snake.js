@@ -24,7 +24,7 @@ class Snake{
 	update(){
 		// Moves the tail
 		this.tail.unshift([this.x, this.y])
-		this.tail.splice(-1)
+		this.tail.pop()
 
 		// Moves the head
 		this.x += this.dir[0] * grid

@@ -1,5 +1,6 @@
 class Snake{
 	constructor(){
+		// Position of the snake at the start of the game
 		this.x = 10 * grid
 		this.y = 10 * grid
 
@@ -8,8 +9,8 @@ class Snake{
 
 		// Snake starts with a size of 3 (head + 2 tail pieces)
 		this.tail = [
-		[this.x, this.y],
-		[this.x, this.y]
+			[this.x, this.y],
+			[this.x, this.y]
 		]
 
 		// Orientate arrow keys and direction changes
@@ -41,25 +42,27 @@ class Snake{
 		if (this.tail[0][0] === this.x + xD * grid && this.tail[0][1] === this.y + yD * grid) return
 
 		// Prevents player from going backwards and dying
-		if ((xD === 0 && this.dir[1] === 0) || (yD === 0 && this.dir[0] === 0)) return this.dir = [xD, yD]
+		if ((xD === 0 && this.dir[1] !== 0) || (yD === 0 && this.dir[0] !== 0)) return
+
+		// If none of the conditionals above were triggered, allow player to change directions
+		this.dir = [xD, yD]
 	}
 
 	show(){
 		// Draws the snake
 		fill(255)
 		rect(this.x, this.y, grid)
-		for(const piece of this.tail) rect(piece[0], piece[1], grid)
+		this.tail.forEach(piece => rect(piece[0], piece[1], grid))
 	}
 
 	eat(fObj){
 		// Checks if food and the snake's head have the same position
 		if(dist(this.x, this.y, fObj.x, fObj.y) < grid) return true
-		return
 	}
 
 	increaseTail(){
 		// Increases snake tail
-		return this.tail.push(this.tail[0])
+		this.tail.push(this.tail[0])
 	}
 
 	death(){
@@ -67,11 +70,6 @@ class Snake{
 		if(this.x <= -grid || this.y <= -grid || this.x >= w || this.y >= h) return true
 
 		// Checks if player hit the tail
-		for(const piece of this.tail) {
-		if(this.x === piece[0] && this.y === piece[1]) return true
-		}
-
-		// Player didn't die
-		return
+		return this.tail.some(piece => this.x === piece[0] && this.y === piece[1])
 	}
 }

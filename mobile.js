@@ -1,19 +1,19 @@
 const swiper = new Swipe(document)
 
 swiper.onUp(function() {
-    snake.changeDirection('ArrowUp')
+	snake.changeDirection('ArrowUp')
 })
 
 swiper.onLeft(function() {
-    snake.changeDirection('ArrowLeft')
+	snake.changeDirection('ArrowLeft')
 })
 
 swiper.onDown(function() {
-    snake.changeDirection('ArrowDown')
+	snake.changeDirection('ArrowDown')
 })
 
 swiper.onRight(function() {
-    snake.changeDirection('ArrowRight')
+	snake.changeDirection('ArrowRight')
 })
 
 swiper.run()

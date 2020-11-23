@@ -47,5 +47,5 @@ function draw() {
 }
 
 function keyPressed(){
-    snake.changeDirection(key)
+	snake.changeDirection(key)
 }
